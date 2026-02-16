@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Edison Rulings (Local)</title>
+    <link rel="stylesheet" href="./css/app.css" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="title-row">
+            <h1 class="title">Edison Rulings</h1>
+            <div id="status" class="status">Loading local pack…</div>
+        </div>
+
+        <div class="search-row">
+            <div class="search-wrap">
+                <input id="q" class="search-input" type="search" placeholder="Search card name…" autocomplete="off"
+                    spellcheck="false" />
+                <button id="clear" class="clear-btn" type="button" aria-label="Clear search" title="Clear">
+                    ×
+                </button>
+            </div>
+
+            <label class="toggle" title="Also match query against card effect text (Text).">
+                <input id="includeText" type="checkbox" />
+                <span>Search in Text</span>
+            </label>
+
+            <button id="toggleResults" class="icon-btn mobile-only" type="button" aria-label="Toggle results"
+                title="Results">
+                <!-- simple “list” icon via inline SVG (no libs) -->
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="hint-row">
+            <div class="hint">Pack: <code>data/edisonrulings.json</code></div>
+            <div class="hint">Results: <span id="resultCount">0</span></div>
+        </div>
+    </header>
+
+    <div id="backdrop" class="backdrop" aria-hidden="true"></div>
+
+    <main class="layout">
+        <section class="panel results-panel" aria-label="Search results">
+            <ul id="results" class="results" role="listbox" aria-label="Card results"></ul>
+            <div id="empty" class="empty">Type in the search box to begin.</div>
+        </section>
+
+        <section class="panel detail-panel" aria-label="Card detail">
+            <div id="detailEmpty" class="detail-empty">
+                Select a card to see its details.
+            </div>
+
+            <article id="detail" class="detail" hidden>
+                <div class="detail-header">
+                    <div class="detail-left">
+                        <img id="cardImg" class="card-img" alt="" loading="lazy" decoding="async"
+                            referrerpolicy="no-referrer" />
+                        <div class="detail-titles">
+                            <h2 id="cardName" class="card-name"></h2>
+                            <div id="cardMeta" class="card-meta"></div>
+                        </div>
+                    </div>
+
+                    <div class="detail-actions">
+                        <a id="rawLink" class="btn btn-secondary" target="_blank" rel="noreferrer">Open raw</a>
+                        <button id="refresh" class="btn btn-secondary" type="button"
+                            title="Fetch latest per-card JSON from GitHub raw">
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <details open class="block">
+                    <summary>PSCT (Edison-Accurate)</summary>
+                    <pre id="psct" class="pre"></pre>
+                </details>
+
+                <details class="block">
+                    <summary>Card Text</summary>
+                    <pre id="cardText" class="pre"></pre>
+                </details>
+
+                <details open class="block">
+                    <summary>Rulings (Edison)</summary>
+                    <pre id="rulings" class="pre"></pre>
+                </details>
+            </article>
+        </section>
+    </main>
+
+    <script type="module" src="./js/app.js"></script>
+</body>
+
+</html>
