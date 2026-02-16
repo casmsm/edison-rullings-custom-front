@@ -32,6 +32,22 @@ const el = {
     backdrop: document.getElementById("backdrop"),
 };
 
+// Header height syncing
+const headerEl = document.querySelector(".header");
+function syncHeaderH() {
+    if (!headerEl) return;
+    const h = Math.ceil(headerEl.getBoundingClientRect().height);
+    document.documentElement.style.setProperty("--header-h", `${h}px`);
+}
+
+syncHeaderH();
+
+if (headerEl && "ResizeObserver" in window) {
+    new ResizeObserver(syncHeaderH).observe(headerEl);
+} else {
+    window.addEventListener("resize", () => syncHeaderH());
+}
+
 // State
 const state = {
     ready: false,
