@@ -356,6 +356,8 @@ function renderDetail(card, refreshed = false) {
         el.status.textContent = "Refreshed from GitHub raw.";
         el.status.classList.add("ok");
     }
+
+    el.cardName.scrollIntoView({ block: "start", behavior: "smooth" });
 }
 
 function showDetailEmpty(text) {

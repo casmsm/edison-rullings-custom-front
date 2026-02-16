@@ -37,7 +37,7 @@
 }
 
 html {
-    scroll-padding-top: calc(var(--header-h) + 14px + 6px + 1px);
+    scroll-padding-top: calc(var(--header-h) + 14px + 8px);
 }
 
 html,
@@ -340,6 +340,10 @@ body {
     gap: 8px;
     flex-wrap: wrap;
     justify-content: flex-end;
+}
+
+#cardName {
+    scroll-margin-top: calc(6px + 1px);
 }
 
 .block {
